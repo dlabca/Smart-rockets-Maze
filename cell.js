@@ -24,6 +24,26 @@ class Cell {
             line(this.x, this.y + this.cellSize, this.x, this.y);
         }
     }
+    GetNeighbours() {
+        let neighbours = [];
+        if (this.cellY > 0 && this.maze[this.cellX][this.cellY - 1].tarDist == undefined) {
+            neighbours.push(this.maze[this.cellX][this.cellY - 1]);
+        }
+        if (this.cellX < this.maze.length - 1 && this.maze[this.cellX + 1][this.cellY].tarDist == undefined) {
+            neighbours.push(this.maze[this.cellX + 1][this.cellY]);
+        }
+        if (this.cellY < this.maze[0].length - 1 && this.maze[this.cellX][this.cellY + 1].tarDist == undefined) {
+            neighbours.push(this.maze[this.cellX][this.cellY + 1]);
+        }
+        if (this.cellX > 0 && this.maze[this.cellX - 1][this.cellY].tarDist == undefined) {
+            neighbours.push(this.maze[this.cellX - 1][this.cellY]);
+        }
+        if (neighbours.length > 0) {
+            return neighbours;
+        } else {
+            return undefined;
+        }
+    }
     GetNeighbour() {
         let neighbours = [];
         if (this.cellY > 0 && this.maze[this.cellX][this.cellY - 1].visited == false) {
